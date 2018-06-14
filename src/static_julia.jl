@@ -212,6 +212,7 @@ function build_object(
   empty!(Base.LOAD_CACHE_PATH) # reset / remove any builtin paths
   push!(Base.LOAD_CACHE_PATH, \"$cache_dir\") # enable usage of precompiled files
   Sys.__init__(); Base.early_init(); # JULIA_HOME is not defined, initializing manually
+  Base.reinit_stdio(); Base.Random.srand();  # manually initializing more pieces of Base.
   include(\"$juliaprog\") # include Julia program file
   empty!(Base.LOAD_CACHE_PATH) # reset / remove build-system-relative paths"
     end
